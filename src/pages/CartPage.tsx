@@ -10,7 +10,10 @@ const CartPage = () => {
       <Navbar />
       
       <main className="flex-grow mt-16">
-        <Cart />
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-2xl font-medium mb-6">Your Shopping Cart</h1>
+          <Cart />
+        </div>
       </main>
       
       <Footer />
