@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { users } from '../data/mockData';
-import { toast } from 'sonner';
+import { toast } from '@/hooks/use-toast';
 
 interface User {
   id: number;

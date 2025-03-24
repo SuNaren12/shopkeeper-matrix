@@ -1,7 +1,6 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { products } from '../data/mockData';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast';
 
 interface CartItem {
   productId: number;
@@ -32,14 +31,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [items, setItems] = useState<CartItem[]>([]);
   
   useEffect(() => {
-    // Load cart from localStorage
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       setItems(JSON.parse(savedCart));
     }
   }, []);
   
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(items));
   }, [items]);
@@ -59,7 +56,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const existingItem = prevItems.find(item => item.productId === productId);
       
       if (existingItem) {
-        // Check stock before updating quantity
         if (product.stock < existingItem.quantity + quantity) {
           toast.error("Not enough stock available");
           return prevItems;

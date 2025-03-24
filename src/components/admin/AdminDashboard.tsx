@@ -1,15 +1,15 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { 
   Package, Users, ShoppingBag, Tag, BarChart3, CreditCard, 
   List, Grid2X2, PlusCircle, Search, ChevronDown, LogOut 
 } from 'lucide-react';
 import { products, categories, users, orders } from '@/data/mockData';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast';
 
 // Admin sidebar menu item
 interface SidebarItemProps {
