@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { products, categories, subcategories } from '@/data/mockData';
@@ -8,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart, Minus, Plus, ArrowLeft, Star, Truck, Shield, RotateCcw } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -19,7 +18,6 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   
-  // Find the product
   const product = products.find(p => p.slug === slug);
   
   if (!product) {
@@ -34,7 +32,6 @@ const ProductDetail = () => {
     );
   }
   
-  // Get category and subcategory
   const category = categories.find(c => c.id === product.categoryId);
   const subcategory = subcategories.find(s => s.id === product.subcategoryId);
   
@@ -65,7 +62,6 @@ const ProductDetail = () => {
   
   return (
     <div className="container mx-auto px-4 py-8 mt-16">
-      {/* Back button */}
       <Button 
         variant="ghost" 
         className="mb-6 pl-0 hover:pl-0" 
@@ -76,9 +72,7 @@ const ProductDetail = () => {
       </Button>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Product Images */}
         <div className="space-y-4 animate-fade-in">
-          {/* Main Image */}
           <div className="overflow-hidden rounded-lg bg-secondary/20 aspect-square">
             <img 
               src={product.images[activeImageIndex]} 
@@ -87,7 +81,6 @@ const ProductDetail = () => {
             />
           </div>
           
-          {/* Thumbnails */}
           <div className="flex space-x-2">
             {product.images.map((img, idx) => (
               <button 
@@ -107,9 +100,7 @@ const ProductDetail = () => {
           </div>
         </div>
         
-        {/* Product Info */}
         <div className="animate-slide-up">
-          {/* Category & Product Name */}
           <div className="mb-4">
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
               <span>{category?.name}</span>
@@ -123,7 +114,6 @@ const ProductDetail = () => {
             <h1 className="text-3xl font-medium">{product.name}</h1>
           </div>
           
-          {/* Badges */}
           <div className="flex flex-wrap gap-2 mb-4">
             {product.isNew && (
               <Badge variant="default" className="bg-primary text-primary-foreground">New</Badge>
@@ -140,7 +130,6 @@ const ProductDetail = () => {
             )}
           </div>
           
-          {/* Rating */}
           <div className="flex items-center gap-2 mb-6">
             <div className="flex items-center">
               {[...Array(5)].map((_, idx) => (
@@ -161,7 +150,6 @@ const ProductDetail = () => {
             </span>
           </div>
           
-          {/* Price */}
           <div className="mb-6">
             {product.discountPrice ? (
               <div className="flex items-center gap-3">
@@ -173,10 +161,8 @@ const ProductDetail = () => {
             )}
           </div>
           
-          {/* Description */}
           <p className="text-muted-foreground mb-8">{product.description}</p>
           
-          {/* Quantity Selector and Add to Cart */}
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 mb-8">
             <div className="flex border rounded-md overflow-hidden">
               <Button 
@@ -222,7 +208,6 @@ const ProductDetail = () => {
           
           <Separator className="my-8" />
           
-          {/* Features */}
           <div className="space-y-4">
             <div className="flex items-center">
               <Truck className="h-5 w-5 mr-3 text-muted-foreground" />
